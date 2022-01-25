@@ -3,9 +3,9 @@ class SecureEc2 < Formula
 
   desc "CLI tool that helps you to provision EC2 instances securely"
   homepage "https://avishayil.medium.com/you-shouldnt-use-the-ec2-launch-wizard-321543a962ad"
-  url "https://github.com/avishayil/secure_ec2/archive/refs/tags/v0.0.5.tar.gz"
-  version "0.0.5"
-  sha256 "744ea7e715645239d1bd7a05ebdf331ab380f4e7bec65ef6272f388de663a1b3"
+  url "https://github.com/avishayil/secure_ec2/archive/refs/tags/v0.0.6.tar.gz"
+  version "0.0.6"
+  sha256 "218b4f3d0648b187b58b60cfe6a7f969428414b80f2671005f31d37dcf3c0fed"
   license "MIT"
 
   depends_on "python@3"
@@ -128,5 +128,10 @@ class SecureEc2 < Formula
   def install
     virtualenv_create(libexec, "python3")
     virtualenv_install_with_resources using: "python@3"
+  end
+
+  test do
+    cmd_output = shell_output("#{bin}/secure_ec2 --version")
+    assert_match "secure_ec2, version #{version}", cmd_output
   end
 end
